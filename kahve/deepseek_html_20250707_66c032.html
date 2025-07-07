@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kahve Evi Onaltı - QR Menü</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f9f6f0 0%, #e8e1d5 100%);
+            color: #5a3921;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Logo ve Başlık Alanı */
+        .header-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .logo-area {
+            width: 150px;
+            height: 150px;
+            background: #d4b996;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            border: 5px solid #8c5e24;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo-area::before {
+            content: "KE";
+            font-size: 5rem;
+            font-weight: 800;
+            color: #8c5e24;
+            opacity: 0.3;
+            position: absolute;
+        }
+        
+        .logo-area i {
+            font-size: 6rem;
+            color: #5a3921;
+            z-index: 2;
+        }
+        
+        .cafe-name {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #5a3921;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            position: relative;
+        }
+        
+        .cafe-name::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 4px;
+            background: linear-gradient(90deg, #8c5e24, #d4b996, #8c5e24);
+            border-radius: 2px;
+        }
+        
+        .subtitle {
+            font-size: 1.4rem;
+            color: #8c5e24;
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 500;
+            opacity: 0.9;
+            margin-top: 15px;
+        }
+        
+        .qr-notice {
+            background: rgba(140, 94, 36, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 25px auto;
+            max-width: 600px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border: 2px solid rgba(140, 94, 36, 0.3);
+        }
+        
+        .qr-notice i {
+            font-size: 3rem;
+            color: #8c5e24;
+        }
+        
+        .qr-notice-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #5a3921;
+        }
+        
+        .qr-notice-content p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #8c5e24;
+        }
+        
+        .menu-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .menu-section {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e8d9c5;
+        }
+        
+        .menu-section:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        
+        .section-header {
+            background: linear-gradient(90deg, #8c5e24, #5a3921);
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-header i {
+            margin-right: 15px;
+            font-size: 2rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .menu-items {
+            padding: 20px;
+        }
+        
+        .menu-item {
+            display: flex;
+            padding: 15px 0;
+            border-bottom: 1px dashed #e0e0e0;
+            transition: background-color 0.2s;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        
+        .menu-item:hover {
+            background-color: #fcf9f4;
+        }
+        
+        .item-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #e8d9c5;
+            padding: 5px;
+            background: white;
+            flex-shrink: 0;
+        }
+        
+        .item-details {
+            flex: 1;
+        }
+        
+        .item-name {
+            font-weight: 600;
+            color: #5a3921;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .item-price {
+            font-weight: 700;
+            color: #8c5e24;
+            font-size: 1.2rem;
+            text-align: right;
+            min-width: 80px;
+        }
+        
+        .flavors {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #e0e0e0;
+        }
+        
+        .flavor {
+            background: linear-gradient(135deg, #8c5e24, #d4b996);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+        
+        .ice-cream-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 0;
+        }
+        
+        .ice-cream-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #d4b996;
+            background: #fcf9f4;
+            padding: 5px;
+        }
+        
+        .ice-cream-price {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #8c5e24;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #8c5e24;
+            background: #fcf9f4;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-top: 20px;
+            border: 1px solid #e8d9c5;
+        }
+        
+        .footer-logo {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #8c5e24;
+        }
+        
+        @media (max-width: 768px) {
+            .menu-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .cafe-name {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .qr-notice {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo-area {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .logo-area i {
+                font-size: 4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-container">
+            <div class="logo-area">
+                <i class="fas fa-coffee"></i>
+            </div>
+            <h1 class="cafe-name">Kahve Evi Onaltı</h1>
+            <p class="subtitle">Masalarınızdaki QR kodunu tarayarak bu menüye ulaştınız. Afiyet olsun!</p>
+            
+            <div class="qr-notice">
+                <i class="fas fa-qrcode"></i>
+                <div class="qr-notice-content">
+                    <h3>QR Kod Kullanımı</h3>
+                    <p>Bu menüyü telefonunuza kaydetmek için masanızdaki QR kodunu tarayın. Menüyü istediğiniz zaman görüntüleyebilirsiniz.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="menu-container">
+            <!-- Sıcak İçecekler -->
+            <div class="menu-section">
+                <div class="section-header">
+                    <i class="fas fa-mug-hot"></i>
+                    <h2>Sıcak İçecekler</h2>
+                </div>
+                <div class="menu-items" id="hot-drinks">
+                    <!-- JavaScript ile doldurulacak -->
+                </div>
+            </div>
+            
+            <!-- Soğuk İçecekler -->
+            <div class="menu-section">
+                <div class="section-header">
+                    <i class="fas fa-glass-cheers"></i>
+                    <h2>Soğuk İçecekler</h2>
+                </div>
+                <div class="menu-items" id="cold-drinks">
+                    <!-- JavaScript ile doldurulacak -->
+                </div>
+            </div>
+            
+            <!-- Dondurmalar -->
+            <div class="menu-section">
+                <div class="section-header">
+                    <i class="fas fa-ice-cream"></i>
+                    <h2>Dondurmalar</h2>
+                </div>
+                <div class="menu-items">
+                    <div class="ice-cream-info">
+                        <img src="https://images.unsplash.com/photo-1576506295286-5cda18df43e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Dondurma" class="ice-cream-img">
+                        <div>
+                            <div class="item-name">Her bir top</div>
+                            <div class="ice-cream-price">20₺</div>
+                        </div>
+                    </div>
+                    <div class="flavors" id="ice-cream-flavors">
+                        <!-- JavaScript ile doldurulacak -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Aperatifler -->
+            <div class="menu-section">
+                <div class="section-header">
+                    <i class="fas fa-hamburger"></i>
+                    <h2>Aperatifler</h2>
+                </div>
+                <div class="menu-items" id="appetizers">
+                    <!-- JavaScript ile doldurulacak -->
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <div class="footer-logo">
+                <i class="fas fa-coffee"></i>
+            </div>
+            <p>© 2025 Kahve Evi Onaltı | Tüm hakları saklıdır</p>
+        </footer>
+    </div>
+
+    <script>
+        // Menü verileri ve görselleri
+        const menuData = {
+            hotDrinks: [
+                { name: "Çay", price: 12.5, img: "images/çay.jpg" },
+                { name: "Bitki Çayı", price: 40, img: "images/bitki.jpg" },
+                { name: "Atom Çayı", price: 40, img: "images/atom.webp" },
+                { name: "Kumda Türk Kahvesi", price: 90, img: "images/kumda.webp" },
+                { name: "Türk Kahvesi", price: 80, img: "images/türkk.jpg" },
+                { name: "Sütlü Türk Kahvesi", price: 85, img: "images/sütlütürk.jpg" },
+                { name: "Dibek Kahvesi", price: 80, img: "images/dibek.jpg" },
+                { name: "Filtre Kahve", price: 80, img: "images/filtre.jpg" },
+                { name: "Espresso", price: 40, img: "images/espresso.jpeg" },
+                { name: "Americano", price: 70, img: "images/americano.jpeg" },
+                { name: "Latte", price: 75, img: "images/latte.jpg" },
+                { name: "Salep", price: 80, img: "images/salep.webp" },
+                { name: "Sıcak Çikolata", price: 80, img: "images/çikolata.jpg" },
+                { name: "Sütlü Nescafe", price: 80, img: "images/sütlünes.jpg" }
+            ],
+            coldDrinks: [
+                { name: "Sütlü Soğuk Kahve", price: 80, img: "images/sütlüsoğukkahve.jpg" },
+                { name: "Sütsüz Soğuk Kahve", price: 75, img: "images/soğukkahve.jpg" },
+                { name: "Karışık Kokteyl", price: 75, img: "images/kokteyl.webp" },
+                { name: "Sade Soda", price: 30, img: "images/sadesoda.jpg" },
+                { name: "Meyveli Soda", price: 35, img: "images/meyvelisoda.jpg" },
+                { name: "Şişe Kola", price: 50, img: "images/şişecola.jpg" },
+                { name: "Kutu Kola", price: 55, img: "images/kutucola.jpg" },
+                { name: "Soğuk Çay", price: 50, img: "images/soğukçay.jpg" },
+                { name: "Şişe Gazoz", price: 55, img: "images/şişegazoz.webp" },
+                { name: "Churchill", price: 55, img: "images/churc.jpg" },
+                { name: "İtalyan Soda", price: 60, img: "images/italyan.jpg" },
+                { name: "Milkshake", price: 100, img: "images/milkshake.jpg" },
+                { name: "Frappe", price: 120, img: "images/frappe.webp" },
+                { name: "Su", price: 10, img: "images/su.jpg" },
+                { name: "Limonata", price: 35, img: "images/limon.webp" },
+                { name: "Vişne Suyu", price: 35, img: "images/vişne.jpg" },
+                { name: "Karadut Suyu", price: 35, img: "images/karadut.jpg" },
+                { name: "Portakal Suyu", price: 35, img: "images/portakal.jpg" },
+                { name: "Karpuzlu İçecek", price: 80, img: "images/karpuz.jpg" }
+            ],
+            iceCreamFlavors: [
+                "Bal", "Badem", "Çilek", "Limon", "Karamel", 
+                "Yaban Mersini", "Çikolatalı", "Antep Fıstığı", 
+                "Vişne", "Karadut", "Kaymak"
+            ],
+            appetizers: [
+                { name: "Sucuklu Tost", price: 75, img: "images/sucuklu.jpg" },
+                { name: "Kaşarlı Tost", price: 75, img: "images/kaşarlı.webp" },
+                { name: "Karışık Tost", price: 80, img: "images/karışık.webp" },
+                { name: "Menemen", price: 100, img: "images/menemen.webp" },
+                { name: "Patlamış Mısır", price: 35, img: "images/patlamıs.jpg" }
+            ]
+        };
+
+        // Menüyü oluşturma fonksiyonu
+        function createMenu() {
+            // Sıcak içecekler
+            const hotDrinksContainer = document.getElementById('hot-drinks');
+            menuData.hotDrinks.forEach(item => {
+                const menuItem = document.createElement('div');
+                menuItem.className = 'menu-item';
+                menuItem.innerHTML = `
+                    <img src="${item.img}" alt="${item.name}" class="item-img">
+                    <div class="item-details">
+                        <div class="item-name">${item.name}</div>
+                    </div>
+                    <div class="item-price">${item.price}₺</div>
+                `;
+                hotDrinksContainer.appendChild(menuItem);
+            });
+
+            // Soğuk içecekler
+            const coldDrinksContainer = document.getElementById('cold-drinks');
+            menuData.coldDrinks.forEach(item => {
+                const menuItem = document.createElement('div');
+                menuItem.className = 'menu-item';
+                menuItem.innerHTML = `
+                    <img src="${item.img}" alt="${item.name}" class="item-img">
+                    <div class="item-details">
+                        <div class="item-name">${item.name}</div>
+                    </div>
+                    <div class="item-price">${item.price}₺</div>
+                `;
+                coldDrinksContainer.appendChild(menuItem);
+            });
+
+            // Dondurma çeşitleri
+            const flavorsContainer = document.getElementById('ice-cream-flavors');
+            menuData.iceCreamFlavors.forEach(flavor => {
+                const flavorElement = document.createElement('div');
+                flavorElement.className = 'flavor';
+                flavorElement.textContent = flavor;
+                flavorsContainer.appendChild(flavorElement);
+            });
+
+            // Aperatifler
+            const appetizersContainer = document.getElementById('appetizers');
+            menuData.appetizers.forEach(item => {
+                const menuItem = document.createElement('div');
+                menuItem.className = 'menu-item';
+                menuItem.innerHTML = `
+                    <img src="${item.img}" alt="${item.name}" class="item-img">
+                    <div class="item-details">
+                        <div class="item-name">${item.name}</div>
+                    </div>
+                    <div class="item-price">${item.price}₺</div>
+                `;
+                appetizersContainer.appendChild(menuItem);
+            });
+        }
+
+        // Sayfa yüklendiğinde menüyü oluştur
+        document.addEventListener('DOMContentLoaded', createMenu);
+    </script>
+</body>
+</html>
