@@ -17,12 +17,13 @@
             background: linear-gradient(135deg, #f9f6f0 0%, #e8e1d5 100%);
             color: #5a3921;
             min-height: 100vh;
-            padding: 20px;
+            padding: 0;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 20px;
         }
         
         /* Logo ve Başlık Alanı */
@@ -47,6 +48,12 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             position: relative;
             overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo-area:hover {
+            transform: scale(1.05);
         }
         
         .logo-area::before {
@@ -58,10 +65,12 @@
             position: absolute;
         }
         
-        .logo-area i {
-            font-size: 6rem;
-            color: #5a3921;
+        .logo-area img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             z-index: 2;
+            border-radius: 15px;
         }
         
         .cafe-name {
@@ -125,6 +134,49 @@
             color: #8c5e24;
         }
         
+        /* Navigasyon */
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .nav-button {
+            background: white;
+            border: none;
+            border-radius: 15px;
+            padding: 20px 30px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #5a3921;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            width: 200px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .nav-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+            background: #f5f1e8;
+        }
+        
+        .nav-button.active {
+            background: linear-gradient(135deg, #8c5e24, #5a3921);
+            color: white;
+        }
+        
+        .nav-button i {
+            font-size: 3rem;
+        }
+        
+        /* Menü Sayfası */
         .menu-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -258,6 +310,99 @@
             color: #8c5e24;
         }
         
+        .special-item {
+            background: #fffaf0;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 20px;
+            border: 2px solid #f1c40f;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .special-item::before {
+            content: "YENİ";
+            position: absolute;
+            top: 10px;
+            right: -25px;
+            background: #e74c3c;
+            color: white;
+            padding: 5px 30px;
+            font-weight: bold;
+            transform: rotate(45deg);
+            font-size: 0.9rem;
+        }
+        
+        .special-item img {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 2px solid #f1c40f;
+        }
+        
+        .special-details {
+            flex: 1;
+        }
+        
+        .special-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #5a3921;
+            margin-bottom: 5px;
+        }
+        
+        .special-price {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #e74c3c;
+        }
+        
+        .special-description {
+            font-size: 0.95rem;
+            color: #7f8c8d;
+        }
+        
+        /* Geri Butonu */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #8c5e24;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+        
+        .back-button:hover {
+            background: #5a3921;
+            transform: translateX(-5px);
+        }
+        
+        /* Sayfa Yönlendirme */
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
         footer {
             text-align: center;
             padding: 30px;
@@ -298,54 +443,187 @@
                 height: 120px;
             }
             
-            .logo-area i {
-                font-size: 4rem;
+            .nav-menu {
+                gap: 10px;
             }
+            
+            .nav-button {
+                width: 160px;
+                padding: 15px 20px;
+            }
+            
+            .special-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .special-item img {
+                width: 100%;
+                max-width: 200px;
+                height: auto;
+            }
+        }
+        
+        /* Anasayfa Bilgilendirme */
+        .home-info {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px auto;
+            max-width: 800px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .home-info h3 {
+            color: #5a3921;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .home-info p {
+            line-height: 1.8;
+            color: #7f8c8d;
+            margin-bottom: 15px;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+            padding: 15px;
+            background: #fcf9f4;
+            border-radius: 10px;
+            text-align: left;
+        }
+        
+        .feature i {
+            font-size: 2rem;
+            color: #8c5e24;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header-container">
-            <div class="logo-area">
-                <i class="fas fa-coffee"></i>
-            </div>
-            <h1 class="cafe-name">Kahve Evi Onaltı</h1>
-            <p class="subtitle">Masalarınızdaki QR kodunu tarayarak bu menüye ulaştınız. Afiyet olsun!</p>
-            
-            <div class="qr-notice">
-                <i class="fas fa-qrcode"></i>
-                <div class="qr-notice-content">
-                    <h3>QR Kod Kullanımı</h3>
-                    <p>Bu menüyü telefonunuza kaydetmek için masanızdaki QR kodunu tarayın. Menüyü istediğiniz zaman görüntüleyebilirsiniz.</p>
+        <!-- Ana Sayfa -->
+        <div id="home-page" class="page active">
+            <div class="header-container">
+                <div class="logo-area" onclick="goToHome()">
+                    <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Kahve Evi Onaltı Logo">
                 </div>
+                <h1 class="cafe-name">Kahve Evi Onaltı</h1>
+                <p class="subtitle">Masalarınızdaki QR kodunu tarayarak bu menüye ulaştınız. Afiyet olsun!</p>
+                
+                <div class="qr-notice">
+                    <i class="fas fa-qrcode"></i>
+                    <div class="qr-notice-content">
+                        <h3>QR Kod Kullanımı</h3>
+                        <p>Bu menüyü telefonunuza kaydetmek için masanızdaki QR kodunu tarayın. Menüyü istediğiniz zaman görüntüleyebilirsiniz.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="home-info">
+                <h3>Hoş Geldiniz! 👋</h3>
+                <p>Kahve Evi Onaltı'na hoş geldiniz. Aşağıdaki kategorilerden istediğiniz menüyü seçerek ürünlerimizi inceleyebilirsiniz.</p>
+                
+                <div class="feature">
+                    <i class="fas fa-fire"></i>
+                    <div>
+                        <h4>Sıcak İçecekler</h4>
+                        <p>Türk kahvesinden latte'ye, salepten sıcak çikolataya tüm sıcak içeceklerimiz</p>
+                    </div>
+                </div>
+                
+                <div class="feature">
+                    <i class="fas fa-snowflake"></i>
+                    <div>
+                        <h4>Soğuk İçecekler</h4>
+                        <p>Yaz aylarının vazgeçilmezleri: milkshake'ler, frappeler, limonatalar ve daha fazlası</p>
+                    </div>
+                </div>
+                
+                <div class="feature">
+                    <i class="fas fa-ice-cream"></i>
+                    <div>
+                        <h4>Dondurmalar</h4>
+                        <p>11 farklı çeşit dondurma ve özel Dondurmalı Kavun tatlımız</p>
+                    </div>
+                </div>
+                
+                <div class="feature">
+                    <i class="fas fa-utensils"></i>
+                    <div>
+                        <h4>Aperatifler</h4>
+                        <p>Açlığınızı bastıracak lezzetli atıştırmalıklar ve tostlar</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="nav-menu">
+                <button class="nav-button" onclick="showPage('hot-drinks')">
+                    <i class="fas fa-mug-hot"></i>
+                    <span>Sıcak İçecekler</span>
+                </button>
+                
+                <button class="nav-button" onclick="showPage('cold-drinks')">
+                    <i class="fas fa-glass-cheers"></i>
+                    <span>Soğuk İçecekler</span>
+                </button>
+                
+                <button class="nav-button" onclick="showPage('ice-cream')">
+                    <i class="fas fa-ice-cream"></i>
+                    <span>Dondurmalar</span>
+                </button>
+                
+                <button class="nav-button" onclick="showPage('appetizers')">
+                    <i class="fas fa-hamburger"></i>
+                    <span>Aperatifler</span>
+                </button>
             </div>
         </div>
         
-        <div class="menu-container">
-            <!-- Sıcak İçecekler -->
+        <!-- Sıcak İçecekler Sayfası -->
+        <div id="hot-drinks-page" class="page">
+            <button class="back-button" onclick="goToHome()">
+                <i class="fas fa-arrow-left"></i> Ana Sayfaya Dön
+            </button>
+            
             <div class="menu-section">
                 <div class="section-header">
                     <i class="fas fa-mug-hot"></i>
                     <h2>Sıcak İçecekler</h2>
                 </div>
-                <div class="menu-items" id="hot-drinks">
+                <div class="menu-items" id="hot-drinks-content">
                     <!-- JavaScript ile doldurulacak -->
                 </div>
             </div>
+        </div>
+        
+        <!-- Soğuk İçecekler Sayfası -->
+        <div id="cold-drinks-page" class="page">
+            <button class="back-button" onclick="goToHome()">
+                <i class="fas fa-arrow-left"></i> Ana Sayfaya Dön
+            </button>
             
-            <!-- Soğuk İçecekler -->
             <div class="menu-section">
                 <div class="section-header">
                     <i class="fas fa-glass-cheers"></i>
                     <h2>Soğuk İçecekler</h2>
                 </div>
-                <div class="menu-items" id="cold-drinks">
+                <div class="menu-items" id="cold-drinks-content">
                     <!-- JavaScript ile doldurulacak -->
                 </div>
             </div>
+        </div>
+        
+        <!-- Dondurmalar Sayfası -->
+        <div id="ice-cream-page" class="page">
+            <button class="back-button" onclick="goToHome()">
+                <i class="fas fa-arrow-left"></i> Ana Sayfaya Dön
+            </button>
             
-            <!-- Dondurmalar -->
             <div class="menu-section">
                 <div class="section-header">
                     <i class="fas fa-ice-cream"></i>
@@ -360,23 +638,34 @@
                         </div>
                     </div>
                     <div class="flavors" id="ice-cream-flavors">
-                    <div class="menu-item">
-        <img src="images/kavunlu.jpg" alt="Kavunlu Dondurma" class="item-img">
-        <div class="item-details">
-            <div class="item-name">Kavunlu Dondurma</div>
-        </div>
-        <div class="item-price">100₺</div>    <!-- JavaScript ile doldurulacak -->
+                        <!-- JavaScript ile doldurulacak -->
+                    </div>
+                    
+                    <!-- Dondurmalı Kavun Özel Ürün -->
+                    <div class="special-item">
+                        <img src="https://images.unsplash.com/photo-1594489573454-3a9e7b2aad07?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Dondurmalı Kavun">
+                        <div class="special-details">
+                            <div class="special-name">Dondurmalı Kavun</div>
+                            <div class="special-price">100₺</div>
+                            <p class="special-description">Taze kavun içinde 2 top dondurma ve mevsim meyveleri ile servis edilir</p>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <!-- Aperatifler Sayfası -->
+        <div id="appetizers-page" class="page">
+            <button class="back-button" onclick="goToHome()">
+                <i class="fas fa-arrow-left"></i> Ana Sayfaya Dön
+            </button>
             
-            <!-- Aperatifler -->
             <div class="menu-section">
                 <div class="section-header">
                     <i class="fas fa-hamburger"></i>
                     <h2>Aperatifler</h2>
                 </div>
-                <div class="menu-items" id="appetizers">
+                <div class="menu-items" id="appetizers-content">
                     <!-- JavaScript ile doldurulacak -->
                 </div>
             </div>
@@ -386,15 +675,15 @@
             <div class="footer-logo">
                 <i class="fas fa-coffee"></i>
             </div>
-            <p>© 2025 Kahve Evi Onaltı | Tüm hakları saklıdır</p>
+            <p>© 2026 Kahve Evi Onaltı | Tüm hakları saklıdır</p>
         </footer>
     </div>
 
-    <script>
+<script>
         // Menü verileri ve görselleri
         const menuData = {
             hotDrinks: [
-                { name: "Çay", price: 15, img: "images/çay.jpg" },
+                { name: "Çay", price: 12.5, img: "images/çay.jpg" },
                 { name: "Bitki Çayı", price: 40, img: "images/bitki.jpg" },
                 { name: "Atom Çayı", price: 40, img: "images/atom.webp" },
                 { name: "Kumda Türk Kahvesi", price: 90, img: "images/kumda.webp" },
@@ -443,11 +732,11 @@
                 { name: "Patlamış Mısır", price: 35, img: "images/patlamıs.jpg" }
             ]
         };
-
+        
         // Menüyü oluşturma fonksiyonu
         function createMenu() {
             // Sıcak içecekler
-            const hotDrinksContainer = document.getElementById('hot-drinks');
+            const hotDrinksContainer = document.getElementById('hot-drinks-content');
             menuData.hotDrinks.forEach(item => {
                 const menuItem = document.createElement('div');
                 menuItem.className = 'menu-item';
@@ -462,7 +751,7 @@
             });
 
             // Soğuk içecekler
-            const coldDrinksContainer = document.getElementById('cold-drinks');
+            const coldDrinksContainer = document.getElementById('cold-drinks-content');
             menuData.coldDrinks.forEach(item => {
                 const menuItem = document.createElement('div');
                 menuItem.className = 'menu-item';
@@ -486,7 +775,7 @@
             });
 
             // Aperatifler
-            const appetizersContainer = document.getElementById('appetizers');
+            const appetizersContainer = document.getElementById('appetizers-content');
             menuData.appetizers.forEach(item => {
                 const menuItem = document.createElement('div');
                 menuItem.className = 'menu-item';
@@ -501,8 +790,50 @@
             });
         }
 
+        // Sayfa değiştirme fonksiyonu
+        function showPage(pageId) {
+            // Tüm sayfaları gizle
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Tüm navigasyon butonlarını normal yap
+            document.querySelectorAll('.nav-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Seçili sayfayı göster
+            document.getElementById(pageId + '-page').classList.add('active');
+            
+            // Ana sayfada değilsek navigasyon butonunu aktif yap
+            if (pageId !== 'home') {
+                const activeButton = document.querySelector(`.nav-button[onclick="showPage('${pageId}')"]`);
+                if (activeButton) {
+                    activeButton.classList.add('active');
+                }
+            }
+            
+            // Sayfanın başına git
+            window.scrollTo(0, 0);
+        }
+
+        // Ana sayfaya dönme fonksiyonu
+        function goToHome() {
+            showPage('home');
+        }
+
         // Sayfa yüklendiğinde menüyü oluştur
-        document.addEventListener('DOMContentLoaded', createMenu);
+        document.addEventListener('DOMContentLoaded', function() {
+            createMenu();
+            
+            // URL'den sayfa kontrolü (örneğin: ?page=hot-drinks)
+            const urlParams = new URLSearchParams(window.location.search);
+            const pageParam = urlParams.get('page');
+            
+            if (pageParam && ['hot-drinks', 'cold-drinks', 'ice-cream', 'appetizers'].includes(pageParam)) {
+                showPage(pageParam);
+            }
+        });
     </script>
 </body>
 </html>
