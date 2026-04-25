@@ -581,6 +581,11 @@
                     <i class="fas fa-hamburger"></i>
                     <span>Aperatifler</span>
                 </button>
+                
+                <button class="nav-button" onclick="showPage('cakes')">
+                    <i class="fas fa-birthday-cake"></i>
+                    <span>Pastalar</span>
+                </button>
             </div>
         </div>
         
@@ -671,6 +676,23 @@
             </div>
         </div>
         
+         <!-- Pastalar Sayfası -->
+        <div id="cakes-page" class="page">
+            <button class="back-button" onclick="goToHome()">
+                <i class="fas fa-arrow-left"></i> Ana Sayfaya Dön
+            </button>
+            
+            <div class="menu-section">
+                <div class="section-header">
+                    <i class="fas fa-birthday-cake"></i>
+                    <h2>Pastalar</h2>
+                </div>
+                <div class="menu-items" id="cakes-content">
+                    <!-- JavaScript ile doldurulacak -->
+                </div>
+            </div>
+        </div>
+        
         <footer>
             <div class="footer-logo">
                 <i class="fas fa-coffee"></i>
@@ -693,10 +715,12 @@
                 { name: "Filtre Kahve", price: 110, img: "images/filtre.jpg" },
                 { name: "Espresso", price: 60, img: "images/espresso.jpeg" },
                 { name: "Americano", price: 100, img: "images/americano.jpeg" },
+                { name: "Cappucino", price: 110, img: "images/cappu.jpg" },
                 { name: "Latte", price: 110, img: "images/latte.jpg" },
                 { name: "Salep", price: 110, img: "images/salep.webp" },
                 { name: "Sıcak Çikolata", price: 110, img: "images/çikolata.jpg" },
-                { name: "Sütlü Nescafe", price: 110, img: "images/sütlünes.jpg" }
+                { name: "Sütlü Nescafe", price: 110, img: "images/sütlünes.jpg" },
+                { name: "Sütsüz Nescafe", price: 100, img: "images/sadenes.jpg" }
             ],
             coldDrinks: [
                 { name: "Sütlü Soğuk Kahve", price: 110, img: "images/sütlüsoğukkahve.jpg" },
@@ -730,6 +754,26 @@
                 { name: "Karışık Tost", price: 110, img: "images/karışık.webp" },
                 { name: "Menemen", price: 150, img: "images/menemen.webp" },
                 { name: "Patlamış Mısır", price: 45, img: "images/patlamıs.jpg" }
+            ],
+            cakes: [
+                { name: "Frambuazlı Cheesecake", price: 200, img: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" },
+                { name: "Limonlu Cheesecake", price: 200, img: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" },
+                { name: "Devils Cake", price: 210, img: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" },
+                { name: "Toffee Latte", price: 220, img: "https://images.unsplash.com/photo-1587668178277-295251f900ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" },
+                { name: "Beyaz Profiterol Mono", price: 220, img: "https://images.unsplash.com/photo-1587668178277-295251f900ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" },
+                { name: "Sufle", price: 250, img: "https://images.unsplash.com/photo-1587668178277-295251f900ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" },
+                { name: "Red Love", price: 200, img: "https://images.unsplash.com/photo-1587668178277-295251f900ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" },
+                { name: "Miamor", price: 220, img: "https://images.unsplash.com/photo-1587668178277-295251f900ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" },
+                { name: "Ballı Ceviz", price: 220, img: "https://images.unsplash.com/photo-1587668178277-295251f900ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" },
+                { name: "Fıstık Şöleni", price: 220, img: "https://images.unsplash.com/photo-1587668178277-295251f900ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" },
+                { name: "Red Lovers", price: 220, img: "https://images.unsplash.com/photo-1587668178277-295251f900ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" },
+                { name: "Yer Fıstıklı", price: 240, img: "https://images.unsplash.com/photo-1587668178277-295251f900ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" },
+                { name: "Kare Profiterol", price: 200, img: "https://images.unsplash.com/photo-1587668178277-295251f900ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" },
+                { name: "Gökkuşağı", price: 220, img: "https://images.unsplash.com/photo-1587668178277-295251f900ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" },
+                { name: "San Sebastian", price: 230, img: "https://images.unsplash.com/photo-1587668178277-295251f900ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" },
+                { name: "Mozaik", price: 220, img: "https://images.unsplash.com/photo-1587668178277-295251f900ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" },
+                { name: "Tiramisu", price: 210, img: "https://images.unsplash.com/photo-1587668178277-295251f900ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" },
+                { name: "Red Velvet", price: 220, img: "https://images.unsplash.com/photo-1587668178277-295251f900ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" }
             ]
         };
         
@@ -788,6 +832,21 @@
                 `;
                 appetizersContainer.appendChild(menuItem);
             });
+
+            // Pastalar
+            const cakesContainer = document.getElementById('cakes-content');
+            menuData.cakes.forEach(item => {
+                const menuItem = document.createElement('div');
+                menuItem.className = 'menu-item';
+                menuItem.innerHTML = `
+                    <img src="${item.img}" alt="${item.name}" class="item-img">
+                    <div class="item-details">
+                        <div class="item-name">${item.name}</div>
+                    </div>
+                    <div class="item-price">${item.price}₺</div>
+                `;
+                cakesContainer.appendChild(menuItem);
+            });
         }
 
         // Sayfa değiştirme fonksiyonu
@@ -830,7 +889,7 @@
             const urlParams = new URLSearchParams(window.location.search);
             const pageParam = urlParams.get('page');
             
-            if (pageParam && ['hot-drinks', 'cold-drinks', 'ice-cream', 'appetizers'].includes(pageParam)) {
+            if (pageParam && ['hot-drinks', 'cold-drinks', 'ice-cream', 'appetizers', 'cakes'].includes(pageParam)) {
                 showPage(pageParam);
             }
         });
